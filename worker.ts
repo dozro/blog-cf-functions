@@ -7,7 +7,7 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
-import {onRequestPost} from './users_blog_inbox.js'
+import {onRequestPost} from './users/[name]/inbox.js'
 
 
 export default {
