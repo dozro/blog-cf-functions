@@ -12,7 +12,12 @@ export async function onRequestGet({ params, env }) {
     "inbox": `https://about.itsrye.dev/users/${username}/inbox`,
     "outbox": `https://about.itsrye.dev/users/${username}/outbox`,
     "followers": `https://about.itsrye.dev/users/${username}/followers`,
-    "url": `https://about.itsrye.dev/`
+    "url": `https://about.itsrye.dev/`,
+    "icon": {
+      "type": "Image",
+      "mediaType": "image/png",
+      "url": "https://about.itsrye.dev/images/avatar.png"
+    }
   };
 
   return new Response(JSON.stringify(actor), {
