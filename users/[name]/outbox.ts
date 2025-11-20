@@ -1,7 +1,7 @@
 export async function onRequestGet({ params }) {
   const username = params.name;
   const url = new URL(
-    `https://about.itsrye.dev/users/${username}/outbox/index.apjson`
+    `https://about.itsrye.dev/activitypub/outbox/index.apjson`
   );
   const response = await fetch(url);
 
