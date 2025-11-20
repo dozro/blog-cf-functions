@@ -10,7 +10,7 @@ export async function onRequestGet({ params, env }) {
     "type": "Person",
     "preferredUsername": username,
     "inbox": `https://about.itsrye.dev/users/${username}/inbox`,
-    "outbox": `https://about.itsrye.dev/users/${username}/outbox/index.apjson`,
+    "outbox": `https://about.itsrye.dev/users/${username}/outbox`,
     "followers": `https://about.itsrye.dev/users/${username}/followers`,
     "url": `https://about.itsrye.dev/`,
     "icon": {

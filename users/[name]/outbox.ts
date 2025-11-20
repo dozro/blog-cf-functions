@@ -1,18 +1,21 @@
-export async function onRequestGet({ params, env }) {
+export async function onRequestGet({ params }) {
   const username = params.name;
+  const url = new URL(
+    `https://about.itsrye.dev/users/${username}/outbox/index.apjson`
+  );
+  const response = await fetch(url);
 
-  const itemsRaw = await env.ACTIVITYPUB_KV.get(`outbox:${username}`);
-  const items = itemsRaw ? JSON.parse(itemsRaw) : [];
+  if (!response.ok) {
+    return new Response("File not found", { status: 404 });
+  }
 
-  const outbox = {
-    "@context": "https://www.w3.org/ns/activitystreams",
-    "id": `https://about.itsrye.dev/users/${username}/outbox`,
-    "type": "OrderedCollection",
-    "totalItems": items.length,
-    "orderedItems": items
-  };
+  const fileBody = await response.arrayBuffer();
+  const mimeType = "application/activity+json";
 
-  return new Response(JSON.stringify(outbox), {
-    headers: { "Content-Type": "application/activity+json" }
+  return new Response(fileBody, {
+    status: 200,
+    headers: {
+      "Content-Type": mimeType,
+    },
   });
 }
